@@ -205,3 +205,8 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# data files (too large for GitHub)
+data/raw/appearances.csv
+data/raw/game_lineups.csv
+data/raw/
