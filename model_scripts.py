@@ -39,3 +39,13 @@ def evaluate_model(name, model, X_tr, y_tr, X_te, y_te):
         "CV_MAE_Mean": cv_mae.mean(),
         "CV_RMSE_Mean": cv_rmse.mean()
     }
+
+# Use MAE (negative in sklearn scoring conventions)
+def cv_mae(model):
+    scores = cross_val_score(
+        model, X_cv, y_cv,
+        cv=tscv,
+        scoring="neg_mean_absolute_error",
+        n_jobs=-1
+    )
+    return -scores.mean(), scores.std()
