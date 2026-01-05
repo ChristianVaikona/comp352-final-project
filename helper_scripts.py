@@ -3,6 +3,22 @@ import pandas as pd
 from sklearn.model_selection import train_test_split, TimeSeriesSplit, cross_val_score
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
+def remove_duplicates(name: str, df):
+    """
+    Checking dataframe for duplicates and removing if present    
+    """
+    print("\n"+"-"*30)
+    print(str(name))
+    print("-"*30)
+    print(f"Total rows: {len(df)}")
+    print(f"Duplicate rows: {df.duplicated().sum()}")
+    if df.duplicated().sum() > 0:
+        print(f"Removing {df.duplicated().sum()} duplicate rows...")
+        df = df.drop_duplicates()
+        print(f"Rows after removing duplicates: {len(df)}")
+    else:
+        print("No duplicate rows found.")
+
 def evaluate_model(name, model, X_tr, y_tr, X_te, y_te):
     """
     Train model, evaluate on test set, and perform cross-validation
@@ -49,19 +65,4 @@ def cv_mae(model):
         n_jobs=-1
     )
     return -scores.mean(), scores.std()
-
-def remove_duplicates(df):
-    """
-    Checking dataframe for duplicates and removing if present    
-
-    NOTICE: Currently Not Formatting As Desired
-    """
-    print(f"Total rows: {len(df)}")
-    print(f"Duplicate rows: {df.duplicated().sum()}")
-    if df.duplicated().sum() > 0:
-        print(f"Removing {df.duplicated().sum()} duplicate rows...")
-        df = df.drop_duplicates()
-        print(f"Rows after removing duplicates: {len(df)}")
-    else:
-        print("No duplicate rows found.")
 
