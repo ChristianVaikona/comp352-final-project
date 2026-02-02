@@ -214,3 +214,6 @@ data/raw/
 # data files (too large for GitHub)
 data/raw/appearances.csv
 data/raw/game_lineups.csv
+
+# DS_Store
+.DS_Store
